@@ -69,21 +69,12 @@ $customerData = $callPriceHelper->getCurrentCustomerData();
                     click: function (data) {
                         var dataForm = $('#cp_form');
                         if (dataForm.validation('isValid')) {
-                            var customer_name = $("#customer_name").val();
-                            var customer_email = $("#customer_email").val();
-                            var customer_telephone = $("#customer_telephone").val();
-                            var request_detail = $("#request_detail").val();
-                            var product_id = $("#product_id").val();
-                            var customer_id = $("#customer_id").val();
-                            var status = $("#status").val();
-                            var product_name = $("#product_name").val();
-                            if (customer_name && customer_email && customer_telephone && request_detail && product_id && customer_id) {
-                                $.ajax({
+                                 $.ajax({
                                     url: "<?php echo $submitformurl; ?>",
                                     dataType: 'json',
                                     type: 'POST',
                                     showLoader: true,
-                                    data: {customer_name: customer_name, customer_email: customer_email, customer_telephone: customer_telephone, request_detail: request_detail, product_id: product_id, customer_id: customer_id, status: status, product_name: product_name},
+                                    data: $('#cp_form').serialize(),
                                     success: function (data) {
                                         if (data.status == "success") {
                                             $("#cp_form").trigger("reset");
@@ -95,7 +86,6 @@ $customerData = $callPriceHelper->getCurrentCustomerData();
                                         }
                                     }
                                 });
-                            }
                         }
                     }
                 }]
